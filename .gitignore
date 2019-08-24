@@ -2,3 +2,4 @@
 *.json
 *.zip
 *.pyc
+*.DS_Store
