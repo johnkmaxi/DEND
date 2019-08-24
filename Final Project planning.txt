@@ -1,0 +1,12 @@
+1. run scraper script on EC2 instance on a weekly basis
+2. dump csv output file to S3
+3. load csv into a postgres database on AWS RDS
+4. connect Amazon QuickSight to db and visualize weekly report in a dashboard.
+
+Tasks:
+1.
+2.
+3.
+  - decide the data model. what fields to keep? What dimensions to create? What
+  is the facts table?
+4.

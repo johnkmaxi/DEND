@@ -1,0 +1,1 @@
+First I wrote all the SQL queries. Then I wrote the redshift_setup.py script to handle cluster instantiation and parameter parsing (update the host and arn config values). Then I iterated on the sql_queries by troubleshooting any errors that arose when running create_tables.py or etl.py.
