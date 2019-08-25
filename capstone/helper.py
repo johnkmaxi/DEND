@@ -66,7 +66,7 @@ def bulk_df_insert(df, cur, table, schema='postgres'):
     cur.copy_from(sio, f"{table}", columns=df.columns, sep=',')
         #conn.commit()
 
-def process_weather(files, cur):
+def process_weather(files, cur, log):
     """
     process the AQI/WEATHER/WiND data
     process each year of data individually. I will need to first filter each file
@@ -81,22 +81,23 @@ def process_weather(files, cur):
     # extract the key from the filenames so we know what type of data each df holds
     # read_csv if a zip file, read_json otherwise
     dfs = {re.search('_(\w+)_', f).group(1): pd.read_csv(f) if f[-3:]=='zip' else pd.read_json(f) for f in files}
-    print(dfs.keys())
-    print("filter AQI data: 'Pollutant Standard' == PM25 24-hour 2012")
+    for k, v in dfs.items():
+        log.logger.info(f'{k} shape: {v.shape}')
     # Parmeter Name = 'PM2.5 - Local Conditions'
     dfs['88101'] = dfs['88101'][dfs['88101']['Pollutant Standard'] == 'PM25 24-hour 2012']
     # concat dfs into a single DataFrame
     df = pd.concat(dfs.values(), axis=0)
-    print(f'df shape: {df.shape}')
+    log.logger.info(f'df shape: {df.shape}')
 
     # create Year and Month columns
     df['ts'] = pd.to_datetime(df['Date Local'])
 
-    print("extract State and County info")
+    # log.logger.info("extract State and County info")
     states = df[['State Code','State Name']].drop_duplicates()
     states['Region'] = states['State Name'].map(region_state_map).fillna(-1)
     counties = df[['County Code','County Name','State Code']].drop_duplicates().fillna(-1)
-    print('created location tables')
+
+    # log.logger.info('created location tables')
 
     # pivot around rows location and time rows
     df_month = df.pivot_table(index=['State Code','County Code','ts'],
@@ -107,21 +108,25 @@ def process_weather(files, cur):
     months = df_month.groupby([pd.Grouper(level='State Code'),
                                pd.Grouper(level='County Code'),
                                pd.Grouper(freq='M', level='ts')]).mean()
+    log.logger.info(f'df_month shape: {df_month.shape}')
 
     # add one month to the months index, this causes current months data to be
     # associated with the next month
-    print("making dates offset")
+    log.logger.info("making dates offset")
     months.index = months.index.set_levels(months.index.levels[-1] + pd.DateOffset(months=1), level=-1)
     months = months.reset_index()
     months['Year'] = months['ts'].dt.year
     months['Month'] = months['ts'].dt.month
 
-    print("order columns for as in data model")
+    log.logger.info("order columns for as in data model")
     months = months[['State Code','County Code','Year','Month','PM2.5 - Local Conditions',
                      'Outdoor Temperature','Barometric pressure','Relative Humidity ',
                      'Dew Point','Wind Speed - Resultant','Wind Direction - Resultant']]
 
-    print('created month table')
+    log.logger.info('created month table')
+    log.logger.info(f'states shape: {states.shape}')
+    log.logger.info(f'counties shape: {counties.shape}')
+    log.logger.info(f'months shape: {months.shape}')
     # insert data
     for i, row in states.iterrows():
         cur.execute(state_insert, list(row))
@@ -130,16 +135,17 @@ def process_weather(files, cur):
     for i, row in months.iterrows():
         cur.execute(weather_insert, list(row))
 
-def process_nhis(file, cur):
-    print('read csv within zip archive')
+def process_nhis(file, cur, log):
+    log.logger.info('read csv within zip archive')
     df = csv_in_zip(file)
     #df = dd.from_pandas(df, npartitions=500)
-    print('data loaded')
+    log.logger.info('data loaded')
+    log.logger.info(f'raw data shape: {df.shape}')
     # drop rows using the QC flag
     df = df[df['QCADULT'].isnull()]
     df = df[df['QCCHILD'].isnull()]
-    print('quality filter')
-    print('get the child and adult problems, times and durations')
+    log.logger.info('quality filter')
+    log.logger.info('get the child and adult problems, times and durations')
     child_problems = [x for x in df.columns if 'LAHCC' in x]
     child_tuples = []
     for p in child_problems:
@@ -155,7 +161,11 @@ def process_nhis(file, cur):
         t = [x for x in df.columns if ('LATIME' in x or 'LTIME' in x) and n in x][0]
         d = [x for x in df.columns if ('LAUNIT' in x or 'LUNIT' in x) and n in x][0]
         adult_tuples.append((p,t,d))
-    print('calculate how far back the problems started')
+    for t in child_tuples:
+        log.logger.info(f'{t}')
+    for t in adult_tuples:
+        log.logger.info(f'{t}')
+    log.logger.info('calculate how far back the problems started')
     for p in child_tuples:
         #df[f'start_{p[0]}'] = df[list(child_tuples[0])].apply(calc_problem_duration, axis=1, meta=(None, 'timedelta64[ns]'))
         idxs = df[list(child_tuples[0])].dropna().index
@@ -165,16 +175,16 @@ def process_nhis(file, cur):
         idxs = df[list(adult_tuples[0])].dropna().index
         to_insert = df[list(adult_tuples[0])].dropna().apply(calc_problem_duration, axis=1)#, meta=(None, 'timedelta64[ns]')
         df.loc[idxs, f'start_{p[0]}'] = to_insert
-    print('calculate the start year and start month')
+    log.logger.info('calculate the start year and start month')
     df['ts'] = pd.to_datetime(df['SRVY_YR'].astype(str)+df['INTV_MON'].astype(str), format='%Y%m')
 
-    print('stack problems into a column')
+    log.logger.info('stack problems into a column')
     melted1 = pd.melt(df,#.reshape
                       id_vars=['FPX','FMX','HHX','SRVY_YR','INTV_MON','AGE_P','WTFA','SEX','REGION','ts'],
                       value_vars=adult_problems+child_problems,
                       var_name='PROBLEM',
                       value_name='PROBLEM_CODE')
-    print('stack how long ago problem started into a column')
+    log.logger.info('stack how long ago problem started into a column')
     melted2 = pd.melt(df,#.reshape
                       id_vars=['FPX','FMX','HHX','SRVY_YR','INTV_MON','AGE_P','WTFA','SEX','REGION','ts'],
                       value_vars=[x for x in df.columns if 'start' in x],
@@ -182,7 +192,7 @@ def process_nhis(file, cur):
                       value_name='start_ago')
     melted2['PROBLEM'] = melted2['start'].str[6:]
 
-    print('find out the year and month when a problem started')
+    log.logger.info('find out the year and month when a problem started')
     merged = pd.merge(melted1,
                       melted2,
                       left_on=['FPX','FMX','HHX','SRVY_YR','INTV_MON','AGE_P','WTFA','SEX','REGION','PROBLEM','ts'],
@@ -190,10 +200,10 @@ def process_nhis(file, cur):
                       how='inner')
     merged['PROBLEM_START'] = merged['ts'] - merged['start_ago']
     merged['LINE'] = merged.groupby(['FPX','FMX','HHX']).cumcount()
-    print('make PROBLEM_START_YR and Month')
+    log.logger.info('make PROBLEM_START_YR and Month')
     merged['PROBLEM_START_YR'] = merged['PROBLEM_START'].dt.year
     merged['PROBLEM_START_MONTH'] = merged['PROBLEM_START'].dt.month
-    print('recode identical child/adult problems:')
+    log.logger.info('recode identical child/adult problems:')
     # vision
     merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA1' if x == 'LAHCC1' else x)#, meta=('PROBLEM', 'object')
     # hearing
@@ -224,13 +234,16 @@ def process_nhis(file, cur):
                       'SEX','REGION_C','PROBLEM','PROBLEM_CODE','PROBLEM_START_YR',
                       'PROBLEM_START_MONTH']
 
-    print('insert data')
+    log.logger.info('insert data')
+    log.logger.info(f'inserted data shape: {merged.shape}')
     # bulk_df_insert(merged, cur, 'NHIS', schema='postgres')
     for i, row in merged.iterrows():
         cur.execute(nhis_insert, list(row))
 
+    log.logger.info('insert problems dim table')
     problems_table = pd.DataFrame(merged['PROBLEM'].drop_duplicates())
     problems_table['DESCRIPTION'] = problems_table['PROBLEM'].map(problem_map)
+    log.logger.info(f'problems dim shape: {problems_table.shape}')
     for i, row in problems_table.iterrows():
         cur.execute(problems_insert, list(row))
 
