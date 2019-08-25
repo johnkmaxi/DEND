@@ -132,7 +132,7 @@ def process_weather(files, cur):
 
 def process_nhis(file, cur):
     print('read csv within zip archive')
-    df = csv_in_zip(file, **{'nrows':4000})
+    df = csv_in_zip(file)
     #df = dd.from_pandas(df, npartitions=500)
     print('data loaded')
     # drop rows using the QC flag
