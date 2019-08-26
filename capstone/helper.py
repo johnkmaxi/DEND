@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from io import StringIO
 
-from sql_queries import county_insert, state_insert, weather_insert
+from sql_queries import county_insert, state_insert, weather_insert, nhis_insert, problems_insert
 
 def file_finder(keys, search_list):
     """
@@ -22,7 +22,7 @@ def csv_in_zip(archive_path, **kwargs):
     """
     get csv file from a zip archive holding data in multiple file types
     """
-    with ZipFile('./data/personsx2015.zip', 'r') as z:
+    with ZipFile(archive_path, 'r') as z:
         df = pd.read_csv(z.open('personsx.csv'), **kwargs)
     return df
 
