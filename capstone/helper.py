@@ -23,7 +23,10 @@ def csv_in_zip(archive_path, **kwargs):
     get csv file from a zip archive holding data in multiple file types
     """
     with ZipFile(archive_path, 'r') as z:
-        df = pd.read_csv(z.open('personsx.csv'), **kwargs)
+        try:
+            df = pd.read_csv(z.open('personsx.csv'), **kwargs)
+        except: # 2016 csv filename has different format
+            df = pd.read_csv(z.open('PERSONSX.csv'), **kwargs)
     return df
 
 def calc_problem_duration(df):
