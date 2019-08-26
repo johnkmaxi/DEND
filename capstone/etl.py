@@ -3,6 +3,7 @@ ETL Script
 """
 import datetime
 import glob
+import os
 import re
 
 import dask
@@ -22,18 +23,18 @@ def process_weather_files(cur, year, weather_keys, log):
     # open the files
     files = glob.glob(f'data/daily*{year}*')
     # get separate file types
-    weather_files = file_finder(weather_keys, files, log)
+    weather_files = file_finder(weather_keys, files)
     log.logger.info(f'weather files for {year}: {weather_files}')
-    process_weather(weather_files, cur)
+    process_weather(weather_files, cur, log)
 
 def process_nhis_files(cur, year, problem_keys, log):
     """
     """
     files = glob.glob(f'data/person*{year}*')
-    problem_files = file_finder(problem_keys, files, log)
+    problem_files = file_finder(problem_keys, files)
     assert len(problem_files) == 1, 'Found too many zip archives'
     log.logger.info(f'nhis files for {year}: {problem_files}')
-    process_nhis(problem_files[0], cur)
+    process_nhis(problem_files[0], cur, log)
 
 
 def main():
