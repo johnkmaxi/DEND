@@ -1,0 +1,3 @@
+2019-08-25 10:47:51,048 - processing - INFO - weather variables: ['88101', 'PRESS', 'RH_DP', 'TEMP', 'WIND']
+2019-08-25 10:47:51,048 - processing - INFO - nhis variables: ['person']
+2019-08-25 10:47:51,048 - processing - INFO - processing started: 2019-08-25 10:47:51.048749

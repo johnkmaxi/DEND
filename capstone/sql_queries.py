@@ -47,7 +47,7 @@ columns = {
     REGION_C int NOT NULL
     )""",
 'WEATHER':"""(
-    ID SERIAL PRIMARY KEY NOT NULL,
+    ID SERIAL NOT NULL,
     STATE_C int NOT NULL,
     COUNTY_C int NOT NULL,
     YEAR int NOT NULL,
@@ -58,7 +58,8 @@ columns = {
     RH_PREV_MONTH_AVG float,
     DEW_POINT_MONTH_AVG float,
     WIND_SPEED_PREV_MONTH_AVG float,
-    WIND_DIRECTION_PREV_MONTH_AVG float
+    WIND_DIRECTION_PREV_MONTH_AVG float,
+    PRIMARY KEY (STATE_C, COUNTY_C, YEAR, MONTH)
     )"""
 }
 
@@ -89,21 +90,13 @@ weather_insert = ("""INSERT INTO WEATHER(
                             ,WIND_SPEED_PREV_MONTH_AVG
                             ,WIND_DIRECTION_PREV_MONTH_AVG)
                             VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                            ON CONFLICT (STATE_C, COUNTY_C, YEAR, MONTH)
-                            DO UPDATE SET (AQI_PREV_MONTH_AVG
-                                          ,TEMP_PREV_MONTH_AVG
-                                          ,PRESS_PREV_MONTH_AVG
-                                          ,RH_PREV_MONTH_AVG
-                                          ,DEW_POINT_MONTH_AVG
-                                          ,WIND_SPEED_PREV_MONTH_AVG
-                                          ,WIND_DIRECTION_PREV_MONTH_AVG) =
-                                          (EXCLUDED.AQI_PREV_MONTH_AVG
-                                          ,EXCLUDED.TEMP_PREV_MONTH_AVG
-                                          ,EXCLUDED.PRESS_PREV_MONTH_AVG
-                                          ,EXCLUDED.RH_PREV_MONTH_AVG
-                                          ,EXCLUDED.DEW_POINT_MONTH_AVG
-                                          ,EXCLUDED.WIND_SPEED_PREV_MONTH_AVG
-                                          ,EXCLUDED.WIND_DIRECTION_PREV_MONTH_AVG)""")
+                ON CONFLICT (STATE_C, COUNTY_C, YEAR, MONTH)
+DO UPDATE SET (AQI_PREV_MONTH_AVG, TEMP_PREV_MONTH_AVG ,PRESS_PREV_MONTH_AVG ,RH_PREV_MONTH_AVG
+               ,DEW_POINT_MONTH_AVG ,WIND_SPEED_PREV_MONTH_AVG
+              ,WIND_DIRECTION_PREV_MONTH_AVG) = (EXCLUDED.AQI_PREV_MONTH_AVG
+            ,EXCLUDED.TEMP_PREV_MONTH_AVG, EXCLUDED.PRESS_PREV_MONTH_AVG
+             ,EXCLUDED.RH_PREV_MONTH_AVG ,EXCLUDED.DEW_POINT_MONTH_AVG
+             ,EXCLUDED.WIND_SPEED_PREV_MONTH_AVG ,EXCLUDED.WIND_DIRECTION_PREV_MONTH_AVG)""")
 
 nhis_insert = ("""INSERT INTO NHIS(
                          FPX
@@ -121,8 +114,9 @@ nhis_insert = ("""INSERT INTO NHIS(
                          ,PROBLEM_START_YR
                          ,PROBLEM_START_MONTH)
                          VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                  ON CONFLICT (FPX,FMX,HHX,LINE,SRVY_YR,INTV_MON)
-                  DO UPDATE SET (AGE_P
+                  ON CONFLICT (FPX, FMX, HHX, SRVY_YR, LINE)
+                  DO UPDATE SET (INTV_MON
+                                ,AGE_P
                                 ,WTFA
                                 ,SEX
                                 ,REGION_C
@@ -130,7 +124,8 @@ nhis_insert = ("""INSERT INTO NHIS(
                                 ,PROBLEM_CODE
                                 ,PROBLEM_START_YR
                                 ,PROBLEM_START_MONTH) =
-                                (EXCLUDED.AGE_P
+                                (EXCLudED.INTV_MON
+                                ,EXCLUDED.AGE_P
                                 ,EXCLUDED.WTFA
                                 ,EXCLUDED.SEX
                                 ,EXCLUDED.REGION_C
