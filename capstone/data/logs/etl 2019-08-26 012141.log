@@ -1,0 +1,13 @@
+2019-08-25 20:21:41,672 - processing - INFO - weather variables: ['88101', 'PRESS', 'RH_DP', 'TEMP', 'WIND']
+2019-08-25 20:21:41,672 - processing - INFO - nhis variables: ['person']
+2019-08-25 20:21:41,672 - processing - INFO - processing started: 2019-08-25 20:21:41.672941
+2019-08-25 20:21:41,672 - processing - INFO - weather files for 2014: ['data\\daily_88101_2014.json', 'data\\daily_PRESS_2014.zip', 'data\\daily_RH_DP_2014.zip', 'data\\daily_TEMP_2014.zip', 'data\\daily_WIND_2014.zip']
+2019-08-25 20:21:54,293 - processing - INFO - 88101 shape: (368522, 29)
+2019-08-25 20:21:54,293 - processing - INFO - PRESS shape: (1000, 29)
+2019-08-25 20:21:54,293 - processing - INFO - RH_DP shape: (1000, 29)
+2019-08-25 20:21:54,293 - processing - INFO - TEMP shape: (1000, 29)
+2019-08-25 20:21:54,293 - processing - INFO - WIND shape: (1000, 29)
+2019-08-25 20:21:54,661 - processing - INFO - df shape: (235040, 29)
+2019-08-25 20:21:55,325 - processing - INFO - df_month shape: (133331, 6)
+2019-08-25 20:21:55,325 - processing - INFO - making dates offset
+2019-08-25 20:21:55,325 - processing - INFO - order columns for as in data model
