@@ -10,8 +10,8 @@ tables = ['PROBLEMS','NHIS','REGION','COUNTY','STATE','WEATHER']
 
 columns = {
 'PROBLEMS':"""(
-    ID SERIAL PRIMARY KEY NOT NULL,
-    NAME varchar NOT NULL,
+    ID SERIAL NOT NULL,
+    NAME varchar PRIMARY KEY NOT NULL,
     DESCRIPTION varchar
     )""",
 'REGION':"""(
@@ -23,8 +23,8 @@ columns = {
     FMX int,
     HHX int,
     LINE int,
-    SRVY_YR int,
-    INTV_MON int NOT NULL,
+    YEAR int,
+    MONTH int NOT NULL,
     AGE_P int,
     WTFA float,
     SEX int,
@@ -33,13 +33,14 @@ columns = {
     PROBLEM_CODE int,
     PROBLEM_START_YR int,
     PROBLEM_START_MONTH int,
-    PRIMARY KEY (FPX, FMX, HHX, SRVY_YR, LINE)
+    PRIMARY KEY (FPX, FMX, HHX, YEAR, LINE)
     )""",
 'COUNTY':"""(
-    ID SERIAL PRIMARY KEY NOT NULL,
+    ID SERIAL NOT NULL,
     COUNTY_C int NOT NULL,
     COUNTY_N varchar NOT NULL,
     STATE_C int NOT NULL
+    PRIMARY KEY (COUNTY_C, STATE_C)
     );""",
 'STATE':"""(
     STATE_C int PRIMARY KEY NOT NULL,
@@ -103,34 +104,34 @@ nhis_insert = ("""INSERT INTO NHIS(
                          ,FMX
                          ,HHX
                          ,LINE
-                         ,SRVY_YR
-                         ,INTV_MON
+                         ,YEAR
+                         ,MONTH
                          ,AGE_P
                          ,WTFA
                          ,SEX
                          ,REGION_C
-                         ,PROBLEM
                          ,PROBLEM_CODE
+                         ,PROBLEM
                          ,PROBLEM_START_YR
                          ,PROBLEM_START_MONTH)
                          VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                  ON CONFLICT (FPX, FMX, HHX, SRVY_YR, LINE)
-                  DO UPDATE SET (INTV_MON
+                  ON CONFLICT (FPX, FMX, HHX, YEAR, LINE)
+                  DO UPDATE SET (MONTH
                                 ,AGE_P
                                 ,WTFA
                                 ,SEX
                                 ,REGION_C
-                                ,PROBLEM
                                 ,PROBLEM_CODE
+                                ,PROBLEM
                                 ,PROBLEM_START_YR
                                 ,PROBLEM_START_MONTH) =
-                                (EXCLudED.INTV_MON
+                                (EXCLudED.MONTH
                                 ,EXCLUDED.AGE_P
                                 ,EXCLUDED.WTFA
                                 ,EXCLUDED.SEX
                                 ,EXCLUDED.REGION_C
-                                ,EXCLUDED.PROBLEM
                                 ,EXCLUDED.PROBLEM_CODE
+                                ,EXCLUDED.PROBLEM
                                 ,EXCLUDED.PROBLEM_START_YR
                                 ,EXCLUDED.PROBLEM_START_MONTH)""")
 

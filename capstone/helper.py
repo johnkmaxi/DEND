@@ -233,8 +233,8 @@ def process_nhis(file, cur, log):
                      'SEX','REGION','PROBLEM','PROBLEM_CODE','PROBLEM_START_YR',
                      'PROBLEM_START_MONTH']]
     merged[['PROBLEM_START_YR','PROBLEM_START_MONTH']] =  merged[['PROBLEM_START_YR','PROBLEM_START_MONTH']].replace({np.nan:None})
-    merged.columns = ['FPX','FMX','HHX','LINE','SRVY_YR','INTV_MON','AGE_P','WTFA',
-                      'SEX','REGION_C','PROBLEM','PROBLEM_CODE','PROBLEM_START_YR',
+    merged.columns = ['FPX','FMX','HHX','LINE','YEAR','MONTH','AGE_P','WTFA',
+                      'SEX','REGION_C','PROBLEM_CODE','PROBLEM','PROBLEM_START_YR',
                       'PROBLEM_START_MONTH']
 
     log.logger.info('insert data')
@@ -244,8 +244,8 @@ def process_nhis(file, cur, log):
         cur.execute(nhis_insert, list(row))
 
     log.logger.info('insert problems dim table')
-    problems_table = pd.DataFrame(merged['PROBLEM'].drop_duplicates())
-    problems_table['DESCRIPTION'] = problems_table['PROBLEM'].map(problem_map)
+    problems_table = pd.DataFrame(merged['PROBLEM_CODE'].drop_duplicates())
+    problems_table['DESCRIPTION'] = problems_table['PROBLEM_CODE'].map(problem_map)
     log.logger.info(f'problems dim shape: {problems_table.shape}')
     for i, row in problems_table.iterrows():
         cur.execute(problems_insert, list(row))
