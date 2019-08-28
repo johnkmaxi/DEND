@@ -29,8 +29,8 @@ columns = {
     WTFA float,
     SEX int,
     REGION_C int,
-    PROBLEM varchar,
-    PROBLEM_CODE int,
+    PROBLEM_CODE varchar,
+    PROBLEM int,
     PROBLEM_START_YR int,
     PROBLEM_START_MONTH int,
     PRIMARY KEY (FPX, FMX, HHX, YEAR, LINE)
@@ -39,7 +39,7 @@ columns = {
     ID SERIAL NOT NULL,
     COUNTY_C int NOT NULL,
     COUNTY_N varchar NOT NULL,
-    STATE_C int NOT NULL
+    STATE_C int NOT NULL,
     PRIMARY KEY (COUNTY_C, STATE_C)
     );""",
 'STATE':"""(
@@ -146,3 +146,15 @@ problems_insert = ("""INSERT INTO PROBLEMS(
                         DESCRIPTION)
                         VALUES(%s, %s)
                         ON CONFLICT DO NOTHING""")
+
+count_problems_by_year = "select year, count(*) from nhis group by year order by year;"
+
+count_weather_by_year = "select year, count(*) from weather group by year order by year;"
+
+sum_problems_by_month_and_year = "select year, month, sum(problem) from nhis group by year, month order by year, month;"
+
+sum_problems_by_start_date = """\
+        select problem_start_yr,problem_start_month, sum(problem) 
+        from nhis
+        group by problem_start_yr, problem_start_month
+        order by problem_start_yr, problem_start_month;"""
