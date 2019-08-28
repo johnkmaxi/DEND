@@ -1,0 +1,346 @@
+2019-08-26 07:21:29,288 - processing - INFO - weather variables: ['88101', 'PRESS', 'RH_DP', 'TEMP', 'WIND']
+2019-08-26 07:21:29,288 - processing - INFO - nhis variables: ['person']
+2019-08-26 07:21:29,288 - processing - INFO - processing started: 2019-08-26 07:21:29.288918
+2019-08-26 07:21:29,288 - processing - INFO - weather files for 2014: ['data\\daily_88101_2014.json', 'data\\daily_PRESS_2014.zip', 'data\\daily_RH_DP_2014.zip', 'data\\daily_TEMP_2014.zip', 'data\\daily_WIND_2014.zip']
+2019-08-26 07:21:47,405 - processing - INFO - 88101 shape: (368522, 29)
+2019-08-26 07:21:47,405 - processing - INFO - PRESS shape: (112870, 29)
+2019-08-26 07:21:47,405 - processing - INFO - RH_DP shape: (155120, 29)
+2019-08-26 07:21:47,405 - processing - INFO - TEMP shape: (293793, 29)
+2019-08-26 07:21:47,405 - processing - INFO - WIND shape: (469377, 29)
+2019-08-26 07:21:48,267 - processing - INFO - df shape: (1262200, 29)
+2019-08-26 07:21:50,733 - processing - INFO - df_month shape: (225314, 7)
+2019-08-26 07:21:50,733 - processing - INFO - making dates offset
+2019-08-26 07:21:50,748 - processing - INFO - order columns for as in data model
+2019-08-26 07:21:50,748 - processing - INFO - created month table
+2019-08-26 07:21:50,748 - processing - INFO - states shape: (54, 3)
+2019-08-26 07:21:50,748 - processing - INFO - counties shape: (784, 3)
+2019-08-26 07:21:50,748 - processing - INFO - months shape: (8989, 11)
+2019-08-26 07:21:55,432 - processing - INFO - weather files for 2015: ['data\\daily_88101_2015.json', 'data\\daily_PRESS_2015.zip', 'data\\daily_RH_DP_2015.zip', 'data\\daily_TEMP_2015.zip', 'data\\daily_WIND_2015.zip']
+2019-08-26 07:22:14,083 - processing - INFO - 88101 shape: (390575, 29)
+2019-08-26 07:22:14,083 - processing - INFO - PRESS shape: (114961, 29)
+2019-08-26 07:22:14,083 - processing - INFO - RH_DP shape: (157853, 29)
+2019-08-26 07:22:14,083 - processing - INFO - TEMP shape: (287482, 29)
+2019-08-26 07:22:14,083 - processing - INFO - WIND shape: (473436, 29)
+2019-08-26 07:22:14,953 - processing - INFO - df shape: (1280672, 29)
+2019-08-26 07:22:17,509 - processing - INFO - df_month shape: (227456, 7)
+2019-08-26 07:22:17,509 - processing - INFO - making dates offset
+2019-08-26 07:22:17,509 - processing - INFO - order columns for as in data model
+2019-08-26 07:22:17,509 - processing - INFO - created month table
+2019-08-26 07:22:17,509 - processing - INFO - states shape: (53, 3)
+2019-08-26 07:22:17,509 - processing - INFO - counties shape: (785, 3)
+2019-08-26 07:22:17,509 - processing - INFO - months shape: (9164, 11)
+2019-08-26 07:22:22,203 - processing - INFO - nhis files for 2015: ['data\\personsx2015.zip']
+2019-08-26 07:22:22,203 - processing - INFO - read csv within zip archive
+2019-08-26 07:22:27,751 - processing - INFO - data loaded
+2019-08-26 07:22:27,751 - processing - INFO - raw data shape: (103789, 606)
+2019-08-26 07:22:28,441 - processing - INFO - quality filter
+2019-08-26 07:22:28,441 - processing - INFO - get the child and adult problems, times and durations
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC1', 'LCTIME1', 'LCUNIT1')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC2', 'LCTIME2', 'LCUNIT2')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC3', 'LCTIME3', 'LCUNIT3')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC4', 'LCTIME4', 'LCUNIT4')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC5', 'LCTIME5', 'LCUNIT5')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC6', 'LCTIME6', 'LCUNIT6')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC8', 'LCTIME8', 'LCUNIT8')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC9', 'LCTIME9', 'LCUNIT9')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC10', 'LCTIME10', 'LCUNIT10')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC11', 'LCTIME11', 'LCUNIT11')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC12', 'LCTIME12', 'LCUNIT12')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC13', 'LCTIME13', 'LCUNIT13')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC90', 'LCTIME90', 'LCUNIT90')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC91', 'LCTIME91', 'LCUNIT91')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCC7A', 'LCTIME7A', 'LCUNIT7A')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA1', 'LATIME1', 'LAUNIT1')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA2', 'LATIME2', 'LAUNIT2')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA3', 'LATIME3', 'LAUNIT3')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA4', 'LATIME4', 'LAUNIT4')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA5', 'LATIME5', 'LAUNIT5')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA6', 'LATIME6', 'LAUNIT6')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA7', 'LATIME7', 'LAUNIT7')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA8', 'LATIME8', 'LAUNIT8')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA9', 'LATIME9', 'LAUNIT9')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA10', 'LATIME10', 'LAUNIT10')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA11', 'LATIME11', 'LAUNIT11')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA12', 'LATIME12', 'LAUNIT12')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA13', 'LATIME13', 'LAUNIT13')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA15', 'LATIME15', 'LAUNIT15')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA16', 'LATIME16', 'LAUNIT16')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA17', 'LATIME17', 'LAUNIT17')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA18', 'LATIME18', 'LAUNIT18')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA90', 'LATIME90', 'LAUNIT90')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA91', 'LATIME91', 'LAUNIT91')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA19_', 'LATIME19', 'LAUNIT19')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA20_', 'LATIME20', 'LAUNIT20')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA21_', 'LATIME21', 'LAUNIT21')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA22_', 'LATIME22', 'LAUNIT22')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA23_', 'LATIME23', 'LAUNIT23')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA24_', 'LATIME24', 'LAUNIT24')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA25_', 'LATIME25', 'LAUNIT25')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA26_', 'LATIME26', 'LAUNIT26')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA27_', 'LATIME27', 'LAUNIT27')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA28_', 'LATIME28', 'LAUNIT28')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA29_', 'LATIME29', 'LAUNIT29')
+2019-08-26 07:22:28,456 - processing - INFO - ('LAHCA30_', 'LATIME30', 'LAUNIT30')
+2019-08-26 07:22:28,472 - processing - INFO - ('LAHCA31_', 'LATIME31', 'LAUNIT31')
+2019-08-26 07:22:28,472 - processing - INFO - ('LAHCA32_', 'LATIME32', 'LAUNIT32')
+2019-08-26 07:22:28,472 - processing - INFO - ('LAHCA33_', 'LATIME33', 'LAUNIT33')
+2019-08-26 07:22:28,472 - processing - INFO - ('LAHCA34_', 'LATIME34', 'LAUNIT34')
+2019-08-26 07:22:28,472 - processing - INFO - ('LAHCA14A', 'LTIME14A', 'LUNIT14A')
+2019-08-26 07:22:28,472 - processing - INFO - calculate how far back the problems started
+2019-08-26 07:22:42,239 - processing - INFO - calculate the start year and start month
+2019-08-26 07:22:42,411 - processing - INFO - stack problems into a column
+2019-08-26 07:22:43,127 - processing - INFO - stack how long ago problem started into a column
+2019-08-26 07:22:45,770 - processing - INFO - find out the year and month when a problem started
+2019-08-26 07:22:55,023 - processing - INFO - make PROBLEM_START_YR and Month
+2019-08-26 07:22:55,210 - processing - INFO - recode identical child/adult problems:
+2019-08-26 07:23:11,636 - processing - INFO - insert data
+2019-08-26 07:23:11,636 - processing - INFO - inserted data shape: (5281356, 14)
+2019-08-26 08:04:32,006 - processing - INFO - insert problems dim table
+2019-08-26 08:04:32,153 - processing - INFO - problems dim shape: (41, 2)
+2019-08-26 08:04:33,401 - processing - INFO - weather files for 2016: ['data\\daily_88101_2016.json', 'data\\daily_PRESS_2016.zip', 'data\\daily_RH_DP_2016.zip', 'data\\daily_TEMP_2016.zip', 'data\\daily_WIND_2016.zip']
+2019-08-26 08:04:52,493 - processing - INFO - 88101 shape: (422631, 29)
+2019-08-26 08:04:52,493 - processing - INFO - PRESS shape: (111499, 29)
+2019-08-26 08:04:52,493 - processing - INFO - RH_DP shape: (164980, 29)
+2019-08-26 08:04:52,493 - processing - INFO - TEMP shape: (299412, 29)
+2019-08-26 08:04:52,493 - processing - INFO - WIND shape: (492197, 29)
+2019-08-26 08:04:53,269 - processing - INFO - df shape: (1328920, 29)
+2019-08-26 08:04:55,336 - processing - INFO - df_month shape: (228049, 7)
+2019-08-26 08:04:55,336 - processing - INFO - making dates offset
+2019-08-26 08:04:55,352 - processing - INFO - order columns for as in data model
+2019-08-26 08:04:55,352 - processing - INFO - created month table
+2019-08-26 08:04:55,352 - processing - INFO - states shape: (54, 3)
+2019-08-26 08:04:55,352 - processing - INFO - counties shape: (782, 3)
+2019-08-26 08:04:55,352 - processing - INFO - months shape: (9064, 11)
+2019-08-26 08:04:58,856 - processing - INFO - nhis files for 2016: ['data\\personsxcsv2016.zip']
+2019-08-26 08:04:58,856 - processing - INFO - read csv within zip archive
+2019-08-26 08:05:02,996 - processing - INFO - data loaded
+2019-08-26 08:05:02,996 - processing - INFO - raw data shape: (97169, 606)
+2019-08-26 08:05:03,523 - processing - INFO - quality filter
+2019-08-26 08:05:03,523 - processing - INFO - get the child and adult problems, times and durations
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC1', 'LCTIME1', 'LCUNIT1')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC2', 'LCTIME2', 'LCUNIT2')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC3', 'LCTIME3', 'LCUNIT3')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC4', 'LCTIME4', 'LCUNIT4')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC5', 'LCTIME5', 'LCUNIT5')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC6', 'LCTIME6', 'LCUNIT6')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC8', 'LCTIME8', 'LCUNIT8')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC9', 'LCTIME9', 'LCUNIT9')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC10', 'LCTIME10', 'LCUNIT10')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC11', 'LCTIME11', 'LCUNIT11')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC12', 'LCTIME12', 'LCUNIT12')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC13', 'LCTIME13', 'LCUNIT13')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC90', 'LCTIME90', 'LCUNIT90')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC91', 'LCTIME91', 'LCUNIT91')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCC7A', 'LCTIME7A', 'LCUNIT7A')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA1', 'LATIME1', 'LAUNIT1')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA2', 'LATIME2', 'LAUNIT2')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA3', 'LATIME3', 'LAUNIT3')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA4', 'LATIME4', 'LAUNIT4')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA5', 'LATIME5', 'LAUNIT5')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA6', 'LATIME6', 'LAUNIT6')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA7', 'LATIME7', 'LAUNIT7')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA8', 'LATIME8', 'LAUNIT8')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA9', 'LATIME9', 'LAUNIT9')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA10', 'LATIME10', 'LAUNIT10')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA11', 'LATIME11', 'LAUNIT11')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA12', 'LATIME12', 'LAUNIT12')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA13', 'LATIME13', 'LAUNIT13')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA15', 'LATIME15', 'LAUNIT15')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA16', 'LATIME16', 'LAUNIT16')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA17', 'LATIME17', 'LAUNIT17')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA18', 'LATIME18', 'LAUNIT18')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA90', 'LATIME90', 'LAUNIT90')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA91', 'LATIME91', 'LAUNIT91')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA19_', 'LATIME19', 'LAUNIT19')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA20_', 'LATIME20', 'LAUNIT20')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA21_', 'LATIME21', 'LAUNIT21')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA22_', 'LATIME22', 'LAUNIT22')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA23_', 'LATIME23', 'LAUNIT23')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA24_', 'LATIME24', 'LAUNIT24')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA25_', 'LATIME25', 'LAUNIT25')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA26_', 'LATIME26', 'LAUNIT26')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA27_', 'LATIME27', 'LAUNIT27')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA28_', 'LATIME28', 'LAUNIT28')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA29_', 'LATIME29', 'LAUNIT29')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA30_', 'LATIME30', 'LAUNIT30')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA31_', 'LATIME31', 'LAUNIT31')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA32_', 'LATIME32', 'LAUNIT32')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA33_', 'LATIME33', 'LAUNIT33')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA34_', 'LATIME34', 'LAUNIT34')
+2019-08-26 08:05:03,523 - processing - INFO - ('LAHCA14A', 'LTIME14A', 'LUNIT14A')
+2019-08-26 08:05:03,523 - processing - INFO - calculate how far back the problems started
+2019-08-26 08:05:17,435 - processing - INFO - calculate the start year and start month
+2019-08-26 08:05:17,607 - processing - INFO - stack problems into a column
+2019-08-26 08:05:18,292 - processing - INFO - stack how long ago problem started into a column
+2019-08-26 08:05:20,763 - processing - INFO - find out the year and month when a problem started
+2019-08-26 08:05:29,483 - processing - INFO - make PROBLEM_START_YR and Month
+2019-08-26 08:05:29,666 - processing - INFO - recode identical child/adult problems:
+2019-08-26 08:05:45,143 - processing - INFO - insert data
+2019-08-26 08:05:45,143 - processing - INFO - inserted data shape: (4948785, 14)
+2019-08-26 08:45:46,423 - processing - INFO - insert problems dim table
+2019-08-26 08:45:46,539 - processing - INFO - problems dim shape: (41, 2)
+2019-08-26 08:45:47,606 - processing - INFO - weather files for 2017: ['data\\daily_88101_2017.json', 'data\\daily_PRESS_2017.zip', 'data\\daily_RH_DP_2017.zip', 'data\\daily_TEMP_2017.zip', 'data\\daily_WIND_2017.zip']
+2019-08-26 08:46:09,859 - processing - INFO - 88101 shape: (467929, 29)
+2019-08-26 08:46:09,859 - processing - INFO - PRESS shape: (114303, 29)
+2019-08-26 08:46:09,859 - processing - INFO - RH_DP shape: (170263, 29)
+2019-08-26 08:46:09,859 - processing - INFO - TEMP shape: (310886, 29)
+2019-08-26 08:46:09,859 - processing - INFO - WIND shape: (518799, 29)
+2019-08-26 08:46:10,907 - processing - INFO - df shape: (1392311, 29)
+2019-08-26 08:46:13,174 - processing - INFO - df_month shape: (236306, 7)
+2019-08-26 08:46:13,174 - processing - INFO - making dates offset
+2019-08-26 08:46:13,190 - processing - INFO - order columns for as in data model
+2019-08-26 08:46:13,190 - processing - INFO - created month table
+2019-08-26 08:46:13,190 - processing - INFO - states shape: (54, 3)
+2019-08-26 08:46:13,190 - processing - INFO - counties shape: (783, 3)
+2019-08-26 08:46:13,190 - processing - INFO - months shape: (9134, 11)
+2019-08-26 08:46:16,743 - processing - INFO - nhis files for 2017: ['data\\personsxcsv2017.zip']
+2019-08-26 08:46:16,743 - processing - INFO - read csv within zip archive
+2019-08-26 08:46:19,917 - processing - INFO - data loaded
+2019-08-26 08:46:19,917 - processing - INFO - raw data shape: (78132, 601)
+2019-08-26 08:46:20,342 - processing - INFO - quality filter
+2019-08-26 08:46:20,342 - processing - INFO - get the child and adult problems, times and durations
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC1', 'LCTIME1', 'LCUNIT1')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC2', 'LCTIME2', 'LCUNIT2')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC3', 'LCTIME3', 'LCUNIT3')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC4', 'LCTIME4', 'LCUNIT4')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC5', 'LCTIME5', 'LCUNIT5')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC6', 'LCTIME6', 'LCUNIT6')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC8', 'LCTIME8', 'LCUNIT8')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC9', 'LCTIME9', 'LCUNIT9')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC10', 'LCTIME10', 'LCUNIT10')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC11', 'LCTIME11', 'LCUNIT11')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC12', 'LCTIME12', 'LCUNIT12')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC13', 'LCTIME13', 'LCUNIT13')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC90', 'LCTIME90', 'LCUNIT90')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC91', 'LCTIME91', 'LCUNIT91')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCC7A', 'LCTIME7A', 'LCUNIT7A')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA1', 'LATIME1', 'LAUNIT1')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA2', 'LATIME2', 'LAUNIT2')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA3', 'LATIME3', 'LAUNIT3')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA4', 'LATIME4', 'LAUNIT4')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA5', 'LATIME5', 'LAUNIT5')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA6', 'LATIME6', 'LAUNIT6')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA7', 'LATIME7', 'LAUNIT7')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA8', 'LATIME8', 'LAUNIT8')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA9', 'LATIME9', 'LAUNIT9')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA10', 'LATIME10', 'LAUNIT10')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA11', 'LATIME11', 'LAUNIT11')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA12', 'LATIME12', 'LAUNIT12')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA13', 'LATIME13', 'LAUNIT13')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA15', 'LATIME15', 'LAUNIT15')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA16', 'LATIME16', 'LAUNIT16')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA17', 'LATIME17', 'LAUNIT17')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA18', 'LATIME18', 'LAUNIT18')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA90', 'LATIME90', 'LAUNIT90')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA91', 'LATIME91', 'LAUNIT91')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA19_', 'LATIME19', 'LAUNIT19')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA20_', 'LATIME20', 'LAUNIT20')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA21_', 'LATIME21', 'LAUNIT21')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA22_', 'LATIME22', 'LAUNIT22')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA23_', 'LATIME23', 'LAUNIT23')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA24_', 'LATIME24', 'LAUNIT24')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA25_', 'LATIME25', 'LAUNIT25')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA26_', 'LATIME26', 'LAUNIT26')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA27_', 'LATIME27', 'LAUNIT27')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA28_', 'LATIME28', 'LAUNIT28')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA29_', 'LATIME29', 'LAUNIT29')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA30_', 'LATIME30', 'LAUNIT30')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA31_', 'LATIME31', 'LAUNIT31')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA32_', 'LATIME32', 'LAUNIT32')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA33_', 'LATIME33', 'LAUNIT33')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA34_', 'LATIME34', 'LAUNIT34')
+2019-08-26 08:46:20,358 - processing - INFO - ('LAHCA14A', 'LTIME14A', 'LUNIT14A')
+2019-08-26 08:46:20,358 - processing - INFO - calculate how far back the problems started
+2019-08-26 08:46:29,190 - processing - INFO - calculate the start year and start month
+2019-08-26 08:46:29,300 - processing - INFO - stack problems into a column
+2019-08-26 08:46:29,741 - processing - INFO - stack how long ago problem started into a column
+2019-08-26 08:46:31,266 - processing - INFO - find out the year and month when a problem started
+2019-08-26 08:46:36,779 - processing - INFO - make PROBLEM_START_YR and Month
+2019-08-26 08:46:36,888 - processing - INFO - recode identical child/adult problems:
+2019-08-26 08:46:48,694 - processing - INFO - insert data
+2019-08-26 08:46:48,694 - processing - INFO - inserted data shape: (3978255, 14)
+2019-08-26 09:19:40,882 - processing - INFO - insert problems dim table
+2019-08-26 09:19:40,976 - processing - INFO - problems dim shape: (41, 2)
+2019-08-26 09:19:41,816 - processing - INFO - weather files for 2018: ['data\\daily_88101_2018.json', 'data\\daily_PRESS_2018.zip', 'data\\daily_RH_DP_2018.zip', 'data\\daily_TEMP_2018.zip', 'data\\daily_WIND_2018.zip']
+2019-08-26 09:20:02,553 - processing - INFO - 88101 shape: (521560, 29)
+2019-08-26 09:20:02,553 - processing - INFO - PRESS shape: (109976, 29)
+2019-08-26 09:20:02,553 - processing - INFO - RH_DP shape: (171311, 29)
+2019-08-26 09:20:02,553 - processing - INFO - TEMP shape: (303287, 29)
+2019-08-26 09:20:02,553 - processing - INFO - WIND shape: (497192, 29)
+2019-08-26 09:20:03,404 - processing - INFO - df shape: (1381063, 29)
+2019-08-26 09:20:05,531 - processing - INFO - df_month shape: (239751, 7)
+2019-08-26 09:20:05,531 - processing - INFO - making dates offset
+2019-08-26 09:20:05,531 - processing - INFO - order columns for as in data model
+2019-08-26 09:20:05,531 - processing - INFO - created month table
+2019-08-26 09:20:05,531 - processing - INFO - states shape: (53, 3)
+2019-08-26 09:20:05,531 - processing - INFO - counties shape: (776, 3)
+2019-08-26 09:20:05,531 - processing - INFO - months shape: (9062, 11)
+2019-08-26 09:20:09,062 - processing - INFO - nhis files for 2018: ['data\\personsxcsv2018.zip']
+2019-08-26 09:20:09,062 - processing - INFO - read csv within zip archive
+2019-08-26 09:20:12,025 - processing - INFO - data loaded
+2019-08-26 09:20:12,025 - processing - INFO - raw data shape: (72831, 602)
+2019-08-26 09:20:12,417 - processing - INFO - quality filter
+2019-08-26 09:20:12,417 - processing - INFO - get the child and adult problems, times and durations
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC1', 'LCTIME1', 'LCUNIT1')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC2', 'LCTIME2', 'LCUNIT2')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC3', 'LCTIME3', 'LCUNIT3')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC4', 'LCTIME4', 'LCUNIT4')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC5', 'LCTIME5', 'LCUNIT5')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC6', 'LCTIME6', 'LCUNIT6')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC8', 'LCTIME8', 'LCUNIT8')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC9', 'LCTIME9', 'LCUNIT9')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC10', 'LCTIME10', 'LCUNIT10')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC11', 'LCTIME11', 'LCUNIT11')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC12', 'LCTIME12', 'LCUNIT12')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC13', 'LCTIME13', 'LCUNIT13')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC90', 'LCTIME90', 'LCUNIT90')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC91', 'LCTIME91', 'LCUNIT91')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCC7A', 'LCTIME7A', 'LCUNIT7A')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA1', 'LATIME1', 'LAUNIT1')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA2', 'LATIME2', 'LAUNIT2')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA3', 'LATIME3', 'LAUNIT3')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA4', 'LATIME4', 'LAUNIT4')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA5', 'LATIME5', 'LAUNIT5')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA6', 'LATIME6', 'LAUNIT6')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA7', 'LATIME7', 'LAUNIT7')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA8', 'LATIME8', 'LAUNIT8')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA9', 'LATIME9', 'LAUNIT9')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA10', 'LATIME10', 'LAUNIT10')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA11', 'LATIME11', 'LAUNIT11')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA12', 'LATIME12', 'LAUNIT12')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA13', 'LATIME13', 'LAUNIT13')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA15', 'LATIME15', 'LAUNIT15')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA16', 'LATIME16', 'LAUNIT16')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA17', 'LATIME17', 'LAUNIT17')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA18', 'LATIME18', 'LAUNIT18')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA90', 'LATIME90', 'LAUNIT90')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA91', 'LATIME91', 'LAUNIT91')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA19_', 'LATIME19', 'LAUNIT19')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA20_', 'LATIME20', 'LAUNIT20')
+2019-08-26 09:20:12,417 - processing - INFO - ('LAHCA21_', 'LATIME21', 'LAUNIT21')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA22_', 'LATIME22', 'LAUNIT22')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA23_', 'LATIME23', 'LAUNIT23')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA24_', 'LATIME24', 'LAUNIT24')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA25_', 'LATIME25', 'LAUNIT25')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA26_', 'LATIME26', 'LAUNIT26')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA27_', 'LATIME27', 'LAUNIT27')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA28_', 'LATIME28', 'LAUNIT28')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA29_', 'LATIME29', 'LAUNIT29')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA30_', 'LATIME30', 'LAUNIT30')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA31_', 'LATIME31', 'LAUNIT31')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA32_', 'LATIME32', 'LAUNIT32')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA33_', 'LATIME33', 'LAUNIT33')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA34_', 'LATIME34', 'LAUNIT34')
+2019-08-26 09:20:12,432 - processing - INFO - ('LAHCA14A', 'LTIME14A', 'LUNIT14A')
+2019-08-26 09:20:12,432 - processing - INFO - calculate how far back the problems started
+2019-08-26 09:20:21,023 - processing - INFO - calculate the start year and start month
+2019-08-26 09:20:21,148 - processing - INFO - stack problems into a column
+2019-08-26 09:20:21,559 - processing - INFO - stack how long ago problem started into a column
+2019-08-26 09:20:22,955 - processing - INFO - find out the year and month when a problem started
+2019-08-26 09:20:28,106 - processing - INFO - make PROBLEM_START_YR and Month
+2019-08-26 09:20:28,216 - processing - INFO - recode identical child/adult problems:
+2019-08-26 09:20:38,633 - processing - INFO - insert data
+2019-08-26 09:20:38,633 - processing - INFO - inserted data shape: (3710454, 14)
+2019-08-26 09:51:32,831 - processing - INFO - insert problems dim table
+2019-08-26 09:51:32,920 - processing - INFO - problems dim shape: (41, 2)
+2019-08-26 09:51:33,716 - processing - INFO - processing finished: 2019-08-26 09:51:33.716035
