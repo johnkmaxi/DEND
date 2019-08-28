@@ -107,11 +107,12 @@ def process_weather(files, cur, log):
                               columns='Parameter Name',
                               values='Arithmetic Mean',
                               aggfunc='mean')
+    log.logger.info(f'df_month shape: {df_month.shape}')
     # calculate the monthly averages
     months = df_month.groupby([pd.Grouper(level='State Code'),
                                pd.Grouper(level='County Code'),
                                pd.Grouper(freq='M', level='ts')]).mean()
-    log.logger.info(f'df_month shape: {df_month.shape}')
+
 
     # add one month to the months index, this causes current months data to be
     # associated with the next month
@@ -125,11 +126,12 @@ def process_weather(files, cur, log):
     months = months[['State Code','County Code','Year','Month','PM2.5 - Local Conditions',
                      'Outdoor Temperature','Barometric pressure','Relative Humidity ',
                      'Dew Point','Wind Speed - Resultant','Wind Direction - Resultant']]
-
+    months = months.replace({np.nan:None})
     log.logger.info('created month table')
     log.logger.info(f'states shape: {states.shape}')
     log.logger.info(f'counties shape: {counties.shape}')
     log.logger.info(f'months shape: {months.shape}')
+
     # insert data
     for i, row in states.iterrows():
         cur.execute(state_insert, list(row))
@@ -181,6 +183,27 @@ def process_nhis(file, cur, log):
     log.logger.info('calculate the start year and start month')
     df['ts'] = pd.to_datetime(df['SRVY_YR'].astype(str)+df['INTV_MON'].astype(str), format='%Y%m')
 
+    log.logger.info('recode identical child/adult problems:')
+    # vision
+    df['LAHCA1'] = df.combine_first(df['LAHCC1'])
+    # hearing
+    df['LAHCA2'] = df.combine_first(df['LAHCC2'])
+    # birth defects
+    df['LAHCA13'] = df.combine_first(df['LAHCC5'])
+    # injury
+    df['LAHCA6'] = df.combine_first(df['LAHCC6'])
+    # intellectual disability, mental retardation
+    df['LAHCA14A'] = df.combine_first(df['LAHCC7A'])
+    # other development problem, cerebral palsy
+    df['LAHCA15'] = df.combine_first(df['LAHCC8'])
+    # mental/emotional/behavioral problem to adult depression; anxiety; emotional problem
+    df['LAHCA17'] = df.combine_first(df['LAHCC9']
+    # bone, joint, muscle problem to adult fracture; bone/joint injury
+    df['LAHCA5'] = df.combine_first(df['LAHCC10'])
+    # other 1 and other 2
+    df['LAHCA90'] = df.combine_first(df['LAHCC90'])
+    df['LAHCA91'] = df.combine_first(df['LAHCC91'])
+
     log.logger.info('stack problems into a column')
     melted1 = pd.melt(df,#.reshape
                       id_vars=['FPX','FMX','HHX','SRVY_YR','INTV_MON','AGE_P','WTFA','SEX','REGION','ts'],
@@ -206,26 +229,7 @@ def process_nhis(file, cur, log):
     log.logger.info('make PROBLEM_START_YR and Month')
     merged['PROBLEM_START_YR'] = merged['PROBLEM_START'].dt.year
     merged['PROBLEM_START_MONTH'] = merged['PROBLEM_START'].dt.month
-    log.logger.info('recode identical child/adult problems:')
-    # vision
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA1' if x == 'LAHCC1' else x)#, meta=('PROBLEM', 'object')
-    # hearing
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA2' if x == 'LAHCC2' else x)#, meta=('PROBLEM', 'object')
-    # birth defects
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA13' if x == 'LAHCC5' else x)#, meta=('PROBLEM', 'object')
-    # injury
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA6' if x == 'LAHCC6' else x)#, meta=('PROBLEM', 'object')
-    # intellectual disability, mental retardation
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA14A' if x == 'LAHCC7A' else x)#, meta=('PROBLEM', 'object')
-    # other development problem, cerebral palsy
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA15' if x == 'LAHCC8' else x)#, meta=('PROBLEM', 'object')
-    # mental/emotional/behavioral problem to adult depression; anxiety; emotional problem
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA17' if x == 'LAHCC9' else x)#, meta=('PROBLEM', 'object')
-    # bone, joint, muscle problem to adult fracture; bone/joint injury
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA5' if x == 'LAHCC10' else x)#, meta=('PROBLEM', 'object')
-    # other 1 and other 2
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA90' if x == 'LAHCC90' else x)#, meta=('PROBLEM', 'object')
-    merged['PROBLEM'] = merged['PROBLEM'].apply(lambda x: 'LAHCA91' if x == 'LAHCC91' else x)#, meta=('PROBLEM', 'object')
+
     # clean problem codes
     merged['PROBLEM_CODE'] = merged['PROBLEM_CODE'].apply(lambda x: 1 if x == 1 else 0)#, meta=('PROBLEM_CODE', 'int64')
     # order columns for insert
@@ -321,7 +325,7 @@ region_state_map = {
 'Kansas':2,
 'Delaware':3,
 'Maryland':3,
-'District of Columbia':3,
+'District Of Columbia':3,
 'Virginia':3,
 'West Virginia':3,
 'Kentucky':3,
