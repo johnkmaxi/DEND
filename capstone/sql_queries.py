@@ -147,14 +147,14 @@ problems_insert = ("""INSERT INTO PROBLEMS(
                         VALUES(%s, %s)
                         ON CONFLICT DO NOTHING""")
 
-count_problems_by_year = "select year, count(*) from nhis group by year order by year;"
+count_nhis_by_year = "select year, count(*) from nhis group by year order by year;"
 
 count_weather_by_year = "select year, count(*) from weather group by year order by year;"
 
 sum_problems_by_month_and_year = "select year, month, sum(problem) from nhis group by year, month order by year, month;"
 
 sum_problems_by_start_date = """\
-        select problem_start_yr,problem_start_month, sum(problem) 
+        select problem_start_yr,problem_start_month, sum(problem)
         from nhis
         group by problem_start_yr, problem_start_month
         order by problem_start_yr, problem_start_month;"""
