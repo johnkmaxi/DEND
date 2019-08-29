@@ -173,36 +173,36 @@ def process_nhis(file, cur, log):
     log.logger.info('calculate how far back the problems started')
     for p in child_tuples:
         #df[f'start_{p[0]}'] = df[list(child_tuples[0])].apply(calc_problem_duration, axis=1, meta=(None, 'timedelta64[ns]'))
-        idxs = df[list(child_tuples[0])].dropna().index
-        to_insert = df[list(child_tuples[0])].dropna().apply(calc_problem_duration, axis=1)#, meta=(None, 'timedelta64[ns]')
+        idxs = df[list(p)].dropna().index
+        to_insert = df[list(p)].dropna().apply(calc_problem_duration, axis=1)#, meta=(None, 'timedelta64[ns]')
         df.loc[idxs, f'start_{p[0]}'] = to_insert
     for p in adult_tuples:
-        idxs = df[list(adult_tuples[0])].dropna().index
-        to_insert = df[list(adult_tuples[0])].dropna().apply(calc_problem_duration, axis=1)#, meta=(None, 'timedelta64[ns]')
+        idxs = df[list(p)].dropna().index
+        to_insert = df[list(p)].dropna().apply(calc_problem_duration, axis=1)#, meta=(None, 'timedelta64[ns]')
         df.loc[idxs, f'start_{p[0]}'] = to_insert
     log.logger.info('calculate the start year and start month')
     df['ts'] = pd.to_datetime(df['SRVY_YR'].astype(str)+df['INTV_MON'].astype(str), format='%Y%m')
 
     log.logger.info('recode identical child/adult problems:')
     # vision
-    df['LAHCA1'] = df.combine_first(df['LAHCC1'])
+    df['LAHCA1'] = df['LAHCA1'].combine_first(df['LAHCC1'])
     # hearing
-    df['LAHCA2'] = df.combine_first(df['LAHCC2'])
+    df['LAHCA2'] = df['LAHCA2'].combine_first(df['LAHCC2'])
     # birth defects
-    df['LAHCA13'] = df.combine_first(df['LAHCC5'])
+    df['LAHCA13'] = df['LAHCA13'].combine_first(df['LAHCC5'])
     # injury
-    df['LAHCA6'] = df.combine_first(df['LAHCC6'])
+    df['LAHCA6'] = df['LAHCA6'].combine_first(df['LAHCC6'])
     # intellectual disability, mental retardation
-    df['LAHCA14A'] = df.combine_first(df['LAHCC7A'])
+    df['LAHCA14A'] = df['LAHCA14A'].combine_first(df['LAHCC7A'])
     # other development problem, cerebral palsy
-    df['LAHCA15'] = df.combine_first(df['LAHCC8'])
+    df['LAHCA15'] = df['LAHCA15'].combine_first(df['LAHCC8'])
     # mental/emotional/behavioral problem to adult depression; anxiety; emotional problem
-    df['LAHCA17'] = df.combine_first(df['LAHCC9']
+    df['LAHCA17'] = df['LAHCA17'].combine_first(df['LAHCC9'])
     # bone, joint, muscle problem to adult fracture; bone/joint injury
-    df['LAHCA5'] = df.combine_first(df['LAHCC10'])
+    df['LAHCA5'] = df['LAHCA5'].combine_first(df['LAHCC10'])
     # other 1 and other 2
-    df['LAHCA90'] = df.combine_first(df['LAHCC90'])
-    df['LAHCA91'] = df.combine_first(df['LAHCC91'])
+    df['LAHCA90'] = df['LAHCA90'].combine_first(df['LAHCC90'])
+    df['LAHCA91'] = df['LAHCA91'].combine_first(df['LAHCC91'])
 
     log.logger.info('stack problems into a column')
     melted1 = pd.melt(df,#.reshape
