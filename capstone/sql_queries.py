@@ -158,3 +158,8 @@ sum_problems_by_start_date = """\
         from nhis
         group by problem_start_yr, problem_start_month
         order by problem_start_yr, problem_start_month;"""
+
+avg_aqi_by_year_month = """\
+select year, month, avg(AQI_PREV_MONTH_AVG) from weather
+group by year, month
+order by year, month"""
